@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9, 3.10, 3.11, 3.12]    # Test across three different Python versions
+        python-version: [3.7, 3.8, 3.9, 3.10x, 3.11, 3.12]    # Test across three different Python versions
     steps:
     - uses: actions/checkout@v4
       with:
@@ -48,13 +48,3 @@ jobs:
     - name: Generate report
       run: |
         make run
-
-    - name: Deploy
-      run: |
-        make deploy
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
